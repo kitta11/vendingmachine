@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vending machine ala Python</title>
+  <link rel="stylesheet" type="text/css" href="/main.css">
+</head>
+
+<body>
+  <div id="contentwrapper">
+    <h1>VENDING MACHINE</h1>
+    <h2>Hello {{name}}. Welcome to the Python version of the vending machine</h2>
+
+    <div id='machine'>
+      {%for group in (response['content'])%}
+      <div class="itemholder" "">
+        <img src=" {{group[3]}}" class="
+          itempic">
+        <div class="itemdetail">{{group[1]}}</div>
+        <button class="itemname" id="{{loop.index}}">More details</button>
+        <div class="itemdesc">{{group[2]}}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    let buttons = document.querySelectorAll(".itemname")
+    buttons.forEach(element => {
+      element.addEventListener('click', function () {
+        descdiv = element.parentNode.querySelector('.itemdesc')
+        // element.classList.toggle('clicked');
+        descdiv.style.display == "block" ? descdiv.style.display = "none" :
+          descdiv.style.display = "block";
+        buttons.forEach(elem => {
+          if (elem.id !== element.id) {
+            descdivother = elem.parentNode.querySelector('.itemdesc')
+            descdivother.style.display = "none";
+          }
+        })
+      })
+    })
+  </script>
+
+</body>
+
+</html>
